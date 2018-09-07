@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head>
+    <title>Screen Saver</title>
+    <style type="text/css">
+
+    .burnsDiv
+    {
+    	overflow: hidden;
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    	width: 100%;
+    	height: 100%;
+    }
+    .burnsImage
+    {
+    	position: relative;
+    	filter: alpha(opacity=0);
+    	opacity: 0;
+    
+    }
+
+    img.burnsImage{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="js/main.js">
+    </script>
+    <div id="content">Hola</div>
+    <div id="backDiv" class="burnsDiv"></div>
+    <div id="screenSaver" class="burnsDiv"></div>
+    <script>
+        var images = new Array(
+        "img/img1.jpg",
+        "img/img2.jpg",
+        "img/img3.jpg",
+        "img/img4.jpg",
+        "img/img5.jpg",
+        );
+    
+        randomizeList(images);
+    
+        startSlideshow(images, "backDiv", "screenSaver");
+    </script>
+</body>
+</html>

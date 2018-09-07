@@ -22,51 +22,6 @@ var backImage;
 var edgePercent = 0.10;
 
 
-function makeBurns(width, height, proportion)
-{
-	// Create the burns object.
-	var burns = {
-		_x0: 0,
-		_x1: 0,
-		_y0: 0,
-		_y1: 0,
-		_w0: 0,
-		_w1: 0,
-		_h0: 0,
-		_h1: 0,
-		apply: function(image) {
-			image.width = (this._w1 - this._w0);
-			image.height = (this._h1 - this._h0);
-		}
-	};
-
-	// Choose the rectangles based on the more constrained dimension.
-	if (proportion < width/height)
-	{
-		// Constrain width and let height float.
-		burns._w0 = width * (1 + edgePercent * Math.random());
-		burns._w1 = width * (1 + edgePercent * Math.random());
-		burns._h0 = burns._w0 / proportion;
-		burns._h1 = burns._w1 / proportion;
-	}
-	else
-	{
-		burns._h0 = height * (1 + edgePercent * Math.random());
-		burns._h1 = height * (1 + edgePercent * Math.random());
-		burns._w0 = burns._h0 * proportion;
-		burns._w1 = burns._h1 * proportion;
-	}
-
-	// Calculate the translation to keep the image within the window.
-	burns._x0 = (burns._w0 - width) * Math.random();
-	burns._x1 = (burns._w1 - width) * Math.random();
-	burns._y0 = (burns._h0 - height) * Math.random();
-	burns._y1 = (burns._h1 - height) * Math.random();
-
-	return burns;
-}
-
-
 // Pan and zoom objects.
 var frontBurns;
 var backBurns;
@@ -129,15 +84,7 @@ function step()
 
 		// Put the new image in the foreground.
 		frontImage = createImage(frontDiv);
-		frontImage.onload = function()
-		{
-			// Scale the new image to fill the screen.
-			//var windowWidth = frontDiv.offsetWidth;
-			//var windowHeight = frontDiv.offsetHeight;
-			//var imageWidth = frontImage.width;
-			//var imageHeight = frontImage.height;
-
-			//frontBurns = makeBurns(windowWidth, windowHeight, imageWidth/imageHeight);
+		frontImage.onload = function(){
 
 			stepTail(animationIndex);
 		}
